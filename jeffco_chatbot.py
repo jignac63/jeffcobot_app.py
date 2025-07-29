@@ -3,28 +3,48 @@ import streamlit as st
 # Set page configuration
 st.set_page_config(page_title="JeffcoBot", layout="centered")
 
-# Add custom CSS for spacing and font styling
+# Custom CSS styling
 st.markdown("""
     <style>
-        div.block-container {
-            padding-top: 2rem;
+        body {
+            background-color: #F9FAFC;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .main {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #002855;
         }
         .stTextInput>div>div>input {
             font-size: 18px;
         }
+        .stCaption {
+            color: #666;
+        }
+        .footer {
+            font-size: 14px;
+            color: #999999;
+            text-align: center;
+            padding-top: 2rem;
+        }
     </style>
 """, unsafe_allow_html=True)
 
-# Optional image/logo (you can replace or remove if needed)
-st.image("https://www.jeffco.us/ImageRepository/Document?documentID=26999", width=300, caption="JeffcoBot – Your County Guide 🤖")
+# Optional banner image
+st.image("https://www.jeffco.us/ImageRepository/Document?documentID=26999", width=320, caption="Jefferson County Official")
 
-# Title and subtitle
+# Title and intro
+st.markdown("<div class='main'>", unsafe_allow_html=True)
 st.title("🤖 JeffcoBot – Your Jefferson County Assistant")
-st.caption("Helping you navigate county services quickly and easily.")
+st.markdown("Ask me about local services like DMV, property taxes, volunteer programs, and more.")
 st.markdown("---")
 
 # User input
-user_input = st.text_input("Ask me something about Jefferson County:")
+user_input = st.text_input("💬 What would you like to know?")
 
 # Predefined Q&A dictionary
 responses = {
@@ -43,7 +63,7 @@ responses = {
     "career": "Visit jeffco.us/jobs for current openings with Jefferson County Government."
 }
 
-# Process input
+# Response logic
 if user_input:
     found = False
     for keyword, reply in responses.items():
@@ -52,8 +72,9 @@ if user_input:
             found = True
             break
     if not found:
-        st.warning("Sorry, I’m still learning. Try asking about seniors, DMV, property tax, etc.")
+        st.warning("❗ I’m still learning. Try asking about DMV, taxes, volunteering, or senior services.")
 
 # Footer
+st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("---")
-st.caption("JeffcoBot is a demo project by Jigna Chaudhary for the Jefferson County Innovation Internship Interview.")
+st.markdown("<div class='footer'>JeffcoBot is a demo project by Jigna Chaudhary for the Jefferson County Innovation Internship Interview.</div>", unsafe_allow_html=True)
